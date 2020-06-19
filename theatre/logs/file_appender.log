@@ -1,0 +1,12 @@
+2020-06-19 19:18:47 ERROR by.gstu.edu.theatre.dao.daos.jdbc.ConnectionManager- cant't find jdbc driver: java.lang.ClassNotFoundException: com.mysql.cj.jdbc.Driver
+2020-06-19 19:18:47 ERROR by.gstu.edu.theatre.dao.daos.jdbc.ConnectionManager- cant't open connection: java.sql.SQLException: No suitable driver found for jdbc:mysql://localhost:3306/play_base
+2020-06-19 19:18:47 ERROR by.gstu.edu.theatre.dao.daos.jdbc.ConnectionManager- cant't open connection: java.sql.SQLException: No suitable driver found for jdbc:mysql://localhost:3306/play_base
+2020-06-19 19:18:47 ERROR by.gstu.edu.theatre.dao.daos.jdbc.ConnectionManager- cant't open connection: java.sql.SQLException: No suitable driver found for jdbc:mysql://localhost:3306/play_base
+2020-06-19 19:18:47 ERROR by.gstu.edu.theatre.dao.daos.jdbc.ConnectionManager- cant't open connection: java.sql.SQLException: No suitable driver found for jdbc:mysql://localhost:3306/play_base
+2020-06-19 19:18:47 ERROR by.gstu.edu.theatre.dao.daos.jdbc.ConnectionManager- cant't open connection: java.sql.SQLException: No suitable driver found for jdbc:mysql://localhost:3306/play_base
+2020-06-19 19:21:07 ERROR by.gstu.edu.theatre.dao.daos.jdbc.ConnectionManager- cant't find jdbc driver: java.lang.ClassNotFoundException: com.mysql.cj.jdbc.Driver
+2020-06-19 19:21:07 ERROR by.gstu.edu.theatre.dao.daos.jdbc.ConnectionManager- cant't open connection: java.sql.SQLException: No suitable driver found for jdbc:mysql://localhost:3306/play_base
+2020-06-19 19:21:07 ERROR by.gstu.edu.theatre.dao.daos.jdbc.ConnectionManager- cant't open connection: java.sql.SQLException: No suitable driver found for jdbc:mysql://localhost:3306/play_base
+2020-06-19 19:21:07 ERROR by.gstu.edu.theatre.dao.daos.jdbc.ConnectionManager- cant't open connection: java.sql.SQLException: No suitable driver found for jdbc:mysql://localhost:3306/play_base
+2020-06-19 19:21:07 ERROR by.gstu.edu.theatre.dao.daos.jdbc.ConnectionManager- cant't open connection: java.sql.SQLException: No suitable driver found for jdbc:mysql://localhost:3306/play_base
+2020-06-19 19:21:07 ERROR by.gstu.edu.theatre.dao.daos.jdbc.ConnectionManager- cant't open connection: java.sql.SQLException: No suitable driver found for jdbc:mysql://localhost:3306/play_base
