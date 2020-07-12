@@ -1,18 +1,16 @@
 package by.gstu.edu.theatre.dao.daos.jdbc.daos.implementations;
 
-import by.gstu.edu.theatre.dao.daos.jdbc.ConnectionManager;
 import by.gstu.edu.theatre.dao.daos.jdbc.PropertyManager;
 import by.gstu.edu.theatre.dao.daos.jdbc.daos.interfaces.Dao;
 import by.gstu.edu.theatre.entities.Author;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class AuthorDao implements Dao<Author> {
     private static final Logger LOGGER = LogManager.getLogger(AuthorDao.class.getSimpleName());
@@ -23,23 +21,52 @@ public class AuthorDao implements Dao<Author> {
     }
 
     @Override
-    public List<Author> getAll() {
-        return GenericDao.getAll(propertyManager.getProperty("query.getAll"), this::getFormResultSet);
+    public Optional<List<Author>> getAll() {
+        try {
+            return Optional.of(GenericDao.getAll(propertyManager.getProperty("query.getAll"), this::getFormResultSet));
+        }
+        catch (IllegalArgumentException e) {
+            LOGGER.warn(String.format("%s: couldn't get authors from db, cause: %s", LOGGER.getName(), e));
+            return Optional.empty();
+        }
     }
 
     @Override
-    public Author get(long id) {
-        return GenericDao.get(propertyManager.getProperty("query.getAuthor"), id, this::getFormResultSet);
+    public <E> Optional<List<Author>> getAll(E key) {
+        return Optional.empty();
     }
 
     @Override
-    public long insert(Author entity) {
-        return GenericDao.insert(propertyManager.getProperty("query.insertAuthor"), entity, this::fillPreparedStatement);
+    public Optional<Author> get(long id) {
+        try {
+            return Optional.of(GenericDao.get(propertyManager.getProperty("query.getAuthor"), id, this::getFormResultSet));
+        }
+        catch (IllegalArgumentException e) {
+            LOGGER.warn(String.format("%s: couldn't get an author from db, cause: %s", LOGGER.getName(), e));
+            return Optional.empty();
+        }
     }
 
     @Override
-    public boolean remove(long id) {
-        return GenericDao.remove(propertyManager.getProperty("query.removeAuthor"), id);
+    public Optional<Long> insert(Author entity) {
+        try {
+            return Optional.of(GenericDao.insert(propertyManager.getProperty("query.insertAuthor"), entity, this::fillPreparedStatement));
+        }
+        catch (IllegalArgumentException e) {
+            LOGGER.warn(String.format("%s: couldn't insert an author into db, cause: %s", LOGGER.getName(), e));
+            return Optional.empty();
+        }
+    }
+
+    @Override
+    public Optional<Boolean> remove(long id) {
+        try {
+            return Optional.of(GenericDao.remove(propertyManager.getProperty("query.removeAuthor"), id));
+        }
+        catch (IllegalArgumentException e) {
+            LOGGER.warn(String.format("%s: couldn't remove an author from db, cause: %s", LOGGER.getName(), e));
+            return Optional.empty();
+        }
     }
 
     private void fillPreparedStatement(Author author, PreparedStatement statement) {

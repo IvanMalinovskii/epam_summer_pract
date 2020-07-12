@@ -13,3 +13,4 @@
 2020-06-28 14:48:55 ERROR UserDao: result set error
 2020-06-28 14:49:35 ERROR UserDao: result set error
 2020-06-28 18:02:15 ERROR UserDao: statement error
+2020-07-02 17:00:35 WARN UserDao: couldn't insert a user into db, cause: java.lang.IllegalArgumentException: error query

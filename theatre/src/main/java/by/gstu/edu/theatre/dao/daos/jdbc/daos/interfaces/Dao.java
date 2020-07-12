@@ -1,10 +1,16 @@
 package by.gstu.edu.theatre.dao.daos.jdbc.daos.interfaces;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface Dao<T> {
-    List<T> getAll();
-    T get(long id);
-    long insert(T entity);
-    boolean remove(long id);
+    Optional<List<T>> getAll();
+
+    <E> Optional<List<T>> getAll(E key);
+
+    Optional<T> get(long id);
+
+    Optional<Long> insert(T entity);
+
+    Optional<Boolean> remove(long id);
 }

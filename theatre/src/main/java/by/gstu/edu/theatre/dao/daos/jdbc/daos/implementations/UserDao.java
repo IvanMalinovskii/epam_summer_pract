@@ -1,6 +1,5 @@
 package by.gstu.edu.theatre.dao.daos.jdbc.daos.implementations;
 
-import by.gstu.edu.theatre.dao.daos.jdbc.ConnectionManager;
 import by.gstu.edu.theatre.dao.daos.jdbc.PropertyManager;
 import by.gstu.edu.theatre.dao.daos.jdbc.daos.interfaces.Dao;
 import by.gstu.edu.theatre.entities.Role;
@@ -8,12 +7,11 @@ import by.gstu.edu.theatre.entities.User;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class UserDao implements Dao<User> {
     private static final Logger LOGGER = LogManager.getLogger(UserDao.class.getSimpleName());
@@ -24,23 +22,52 @@ public class UserDao implements Dao<User> {
     }
 
     @Override
-    public List<User> getAll() {
-        return GenericDao.getAll(propertyManager.getProperty("query.getAllUsers"), this::getFromResultSet);
+    public Optional<List<User>> getAll() {
+        try {
+            return Optional.of(GenericDao.getAll(propertyManager.getProperty("query.getAllUsers"), this::getFromResultSet));
+        }
+        catch (IllegalArgumentException e) {
+            LOGGER.warn(String.format("%s: couldn't get users from db, cause: %s", LOGGER.getName(), e));
+            return Optional.empty();
+        }
     }
 
     @Override
-    public User get(long id) {
-        return GenericDao.get(propertyManager.getProperty("query.getUser"), id, this::getFromResultSet);
+    public <E> Optional<List<User>> getAll(E key) {
+        return Optional.empty();
     }
 
     @Override
-    public long insert(User user) {
-        return GenericDao.insert(propertyManager.getProperty("query.insertUser"), user, this::fillPreparedStatement);
+    public Optional<User> get(long id) {
+        try {
+            return Optional.of(GenericDao.get(propertyManager.getProperty("query.getUser"), id, this::getFromResultSet));
+        }
+        catch (IllegalArgumentException e) {
+            LOGGER.warn(String.format("%s: couldn't get a user from db, cause: %s", LOGGER.getName(), e));
+            return Optional.empty();
+        }
     }
 
     @Override
-    public boolean remove(long id) {
-        return GenericDao.remove(propertyManager.getProperty("query.removeUser"), id);
+    public Optional<Long> insert(User user) {
+        try {
+            return Optional.of(GenericDao.insert(propertyManager.getProperty("query.insertUser"), user, this::fillPreparedStatement));
+        }
+        catch (IllegalArgumentException e) {
+            LOGGER.warn(String.format("%s: couldn't insert a user into db, cause: %s", LOGGER.getName(), e));
+            return Optional.empty();
+        }
+    }
+
+    @Override
+    public Optional<Boolean> remove(long id) {
+        try {
+            return Optional.of(GenericDao.remove(propertyManager.getProperty("query.removeUser"), id));
+        }
+        catch (IllegalArgumentException e) {
+            LOGGER.warn(String.format("%s: couldn't remove a user from db, cause: %s", LOGGER.getName(), e));
+            return Optional.empty();
+        }
     }
 
     private void fillPreparedStatement(User user, PreparedStatement statement) {

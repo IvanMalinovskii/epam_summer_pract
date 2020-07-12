@@ -5,6 +5,8 @@ import by.gstu.edu.theatre.entities.Role;
 import by.gstu.edu.theatre.entities.User;
 import org.junit.jupiter.api.*;
 
+import java.util.Collections;
+
 public class UserDaoTest {
     private static final UserDao dao = new UserDao();
     private static final User user = new User("usLog", "usMail", "usPass", "usPhone", Role.USER);
@@ -13,7 +15,7 @@ public class UserDaoTest {
 
     @BeforeAll
     static void insertUser() {
-        lastIndex = dao.insert(user);
+        lastIndex = dao.insert(user).orElse(-1L);
     }
 
     @AfterAll
@@ -23,7 +25,7 @@ public class UserDaoTest {
 
     @Test
     void testGetAll() {
-        boolean isThere = dao.getAll().stream()
+        boolean isThere = dao.getAll().orElse(Collections.emptyList()).stream()
                 .anyMatch(u -> u.equals(user));
 
         Assertions.assertTrue(isThere);
@@ -31,6 +33,6 @@ public class UserDaoTest {
 
     @Test
     void testGetById() {
-        Assertions.assertEquals(user, dao.get(lastIndex));
+        Assertions.assertEquals(user, dao.get(lastIndex).orElse(null));
     }
 }

@@ -1,8 +1,6 @@
 package by.gstu.edu.theatre.dao.daos.jdbc.daos.implementations;
 
 import by.gstu.edu.theatre.dao.daos.jdbc.ConnectionManager;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,31 +12,46 @@ import java.util.function.BiConsumer;
 import java.util.function.Function;
 
 public class GenericDao {
-    private static final Logger LOGGER = LogManager.getLogger(GenericDao.class.getName());
     private static final ConnectionManager connectionManager = ConnectionManager.getManager();
 
 
     public static <T> List<T> getAll(String query, Function<ResultSet, T> resultSetParser) {
         Connection connection = connectionManager.getConnection();
         try (PreparedStatement statement = connection.prepareStatement(query)) {
-            try (ResultSet resultSet = statement.executeQuery()) {
-                List<T> entities = new ArrayList<>();
-                while (resultSet.next()) {
-                    entities.add(resultSetParser.apply(resultSet));
-                }
-                return entities;
-            }
-            catch (SQLException e) {
-                LOGGER.error(LOGGER.getName() + ": result set error");
-                throw new IllegalArgumentException("error parsing state");
-            }
+            return doStatement(statement, resultSetParser);
         }
         catch (SQLException e) {
-            LOGGER.error(LOGGER.getName() + ": statement error");
             throw new IllegalArgumentException("error query");
         }
         finally {
             connectionManager.releaseConnection(connection);
+        }
+    }
+
+    public static <T, E> List<T> getAll(String query, E key, Function<ResultSet, T> resultSetParser) {
+        Connection connection = connectionManager.getConnection();
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setObject(1, key);
+            return doStatement(statement, resultSetParser);
+        }
+        catch (SQLException e) {
+            throw new IllegalArgumentException("error query");
+        }
+        finally {
+            connectionManager.releaseConnection(connection);
+        }
+    }
+
+    private static<T> List<T> doStatement(PreparedStatement statement, Function<ResultSet, T> resultSetParser) {
+        try (ResultSet resultSet = statement.executeQuery()) {
+            List<T> entities = new ArrayList<>();
+            while (resultSet.next()) {
+                entities.add(resultSetParser.apply(resultSet));
+            }
+            return entities;
+        }
+        catch (SQLException e) {
+            throw new IllegalArgumentException("error parsing state");
         }
     }
 
@@ -51,12 +64,10 @@ public class GenericDao {
                 return resultSetParser.apply(resultSet);
             }
             catch (SQLException e) {
-                LOGGER.error(LOGGER.getName() + ": result set error");
                 throw new IllegalArgumentException("error parsing state");
             }
         }
         catch (SQLException e) {
-            LOGGER.error(LOGGER.getName() + ": statement error");
             throw new IllegalArgumentException("error query");
         }
         finally {
@@ -74,12 +85,10 @@ public class GenericDao {
                 return resultSet.getLong(1);
             }
             catch (SQLException e) {
-                LOGGER.error(LOGGER.getName() + ": result set error");
                 throw new IllegalArgumentException("error parsing state");
             }
         }
         catch (SQLException e) {
-            LOGGER.error(LOGGER.getName() + ": statement error");
             throw new IllegalArgumentException("error query");
         }
         finally {
@@ -94,7 +103,6 @@ public class GenericDao {
             return statement.executeUpdate() > 0;
         }
         catch (SQLException e) {
-            LOGGER.error(LOGGER.getName() + ": statement error");
             throw new IllegalArgumentException("error query");
         }
         finally {

@@ -1,0 +1,7 @@
+by\gstu\edu\theatre\dao\daos\jdbc\ConnectionManagerTest.class
+by\gstu\edu\theatre\dao\daos\jdbc\PlayDatesJsonParserTest.class
+by\gstu\edu\theatre\dao\daos\jdbc\implementations\DateDaoTest.class
+by\gstu\edu\theatre\dao\daos\jdbc\implementations\UserDaoTest.class
+by\gstu\edu\theatre\dao\daos\jdbc\UserServiceTest.class
+by\gstu\edu\theatre\dao\daos\jdbc\PropertyManagerTest.class
+by\gstu\edu\theatre\dao\daos\jdbc\PlayServiceTest.class
