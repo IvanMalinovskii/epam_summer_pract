@@ -1,4 +1,62 @@
 -------------------------------------------------------------------------------
 Test set: by.gstu.edu.theatre.dao.daos.jdbc.PlayDatesJsonParserTest
 -------------------------------------------------------------------------------
-Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.052 s - in by.gstu.edu.theatre.dao.daos.jdbc.PlayDatesJsonParserTest
+Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.057 s <<< FAILURE! - in by.gstu.edu.theatre.dao.daos.jdbc.PlayDatesJsonParserTest
+testGetJsonString  Time elapsed: 0.056 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: 
+expected: <{
+  "play": {
+    "id": 1,
+    "name": "play_name",
+    "description": "play_description",
+    "author": {
+      "id": 1,
+      "name": "author_name"
+    },
+    "genre": {
+      "id": 1,
+      "name": "genre_name"
+    }
+  },
+  "dates": [
+    {
+      "id": 1,
+      "date": "2020-06-12",
+      "playId": 1
+    },
+    {
+      "id": 1,
+      "date": "2020-06-13",
+      "playId": 1
+    }
+  ]
+}> but was: <{
+  "play": {
+    "id": 1,
+    "name": "play_name",
+    "imgUrl": "play_url",
+    "description": "play_description",
+    "author": {
+      "id": 1,
+      "name": "author_name"
+    },
+    "genre": {
+      "id": 1,
+      "name": "genre_name"
+    }
+  },
+  "dates": [
+    {
+      "id": 1,
+      "date": "2020-06-12",
+      "playId": 1
+    },
+    {
+      "id": 1,
+      "date": "2020-06-13",
+      "playId": 1
+    }
+  ]
+}>
+	at by.gstu.edu.theatre.dao.daos.jdbc.PlayDatesJsonParserTest.testGetJsonString(PlayDatesJsonParserTest.java:50)
+

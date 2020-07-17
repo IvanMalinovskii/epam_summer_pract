@@ -15,6 +15,7 @@ by\gstu\edu\theatre\services\PlayService.class
 by\gstu\edu\theatre\entities\Date.class
 by\gstu\edu\theatre\services\parsers\json\LocalDateAdapter.class
 by\gstu\edu\theatre\dao\daos\jdbc\PropertyManager.class
+by\gstu\edu\theatre\servlets\AuthorizationServlet.class
 by\gstu\edu\theatre\entities\Genre.class
 by\gstu\edu\theatre\services\parsers\json\UserJsonParser.class
 by\gstu\edu\theatre\dao\daos\jdbc\daos\implementations\PlayDao.class

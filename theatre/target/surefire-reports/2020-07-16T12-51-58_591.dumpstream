@@ -1,0 +1,4 @@
+# Created at 2020-07-16T12:51:58.791
+Boot Manifest-JAR contains absolute paths in classpath 'D:\epam_summer_pract\solution\epam_summer_pract\theatre\target\test-classes'
+Hint: <argLine>-Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>
+

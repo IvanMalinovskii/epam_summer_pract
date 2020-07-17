@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet("/getAllPlays")
+@WebServlet("/plays")
 public class PlaysServlet extends HttpServlet {
     private PlayService playService;
     private JsonParser parser;

@@ -5,20 +5,22 @@ import java.util.Objects;
 public class Play {
     private long id;
     private String name;
+    private String imgUrl;
     private String description;
     private Author author;
     private Genre genre;
 
-    public Play(long id, String name, String description, Author author, Genre genre) {
+    public Play(long id, String name, String imgUrl, String description, Author author, Genre genre) {
         this.id = id;
         this.name = name;
+        this.imgUrl = imgUrl;
         this.description = description;
         this.author = author;
         this.genre = genre;
     }
 
-    public Play(String name, String description, Author author, Genre genre) {
-        this(-1, name, description, author, genre);
+    public Play(String name, String imgUrl, String description, Author author, Genre genre) {
+        this(-1, name, imgUrl, description, author, genre);
     }
 
     public long getId() {
@@ -41,11 +43,16 @@ public class Play {
         return genre;
     }
 
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
     @Override
     public String toString() {
         return "Play{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", imgUrl='" + imgUrl + '\'' +
                 ", description='" + description + '\'' +
                 ", author=" + author +
                 ", genre=" + genre +
@@ -59,6 +66,7 @@ public class Play {
         Play play = (Play) o;
         return id == play.id &&
                 Objects.equals(name, play.name) &&
+                Objects.equals(imgUrl, play.imgUrl) &&
                 Objects.equals(description, play.description) &&
                 Objects.equals(author, play.author) &&
                 Objects.equals(genre, play.genre);
@@ -66,6 +74,6 @@ public class Play {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, description, author, genre);
+        return Objects.hash(id, name, imgUrl, description, author, genre);
     }
 }

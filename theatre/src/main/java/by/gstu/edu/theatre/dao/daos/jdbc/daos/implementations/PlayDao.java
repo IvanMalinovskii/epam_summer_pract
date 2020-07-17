@@ -65,8 +65,8 @@ public class PlayDao implements Dao<Play> {
 
     private void fillPreparedStatement(Play play, PreparedStatement statement) {
         try {
-            statement.setLong(1, play.getId());
-            statement.setString(2, play.getName());
+            statement.setString(1, play.getName());
+            statement.setString(2, play.getImgUrl());
             statement.setString(3, play.getDescription());
             statement.setLong(4, play.getAuthor().getId());
             statement.setLong(5, play.getGenre().getId());
@@ -80,12 +80,13 @@ public class PlayDao implements Dao<Play> {
         try {
             long id = resultSet.getLong("play_id");
             String name = resultSet.getString("play_name");
+            String imgUrl = resultSet.getString("play_img");
             String description = resultSet.getString("play_description");
             long authorId = resultSet.getLong("author_id");
             String authorName = resultSet.getString("author_name");
             long genreId = resultSet.getLong("genre_id");
             String genreName = resultSet.getString("genre_name");
-            return new Play(id, name, description, new Author(authorId, authorName), new Genre(genreId, genreName));
+            return new Play(id, imgUrl, name, description, new Author(authorId, authorName), new Genre(genreId, genreName));
         }
         catch (SQLException e) {
             throw new IllegalArgumentException();

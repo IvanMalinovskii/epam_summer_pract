@@ -111,7 +111,7 @@ html, body {height: 100%; overflow-x: hidden;}
                 width: 95%;
             }
             width: 48%;
-            max-height: 150px;
+            height: 150px;
             margin: 10px 0;
         }
     }
@@ -140,7 +140,7 @@ html, body {height: 100%; overflow-x: hidden;}
         transition: .7s;
         &:hover {
             color: rgb(126, 126, 126);
-            transform: scale(1.2);
+            transform: scale(1.1);
         }
     }
 }

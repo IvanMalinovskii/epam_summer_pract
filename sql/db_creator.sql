@@ -17,6 +17,7 @@ create table genres(genre_id int primary key auto_increment,
 
 create table plays(play_id int primary key auto_increment,
 				   play_name varchar(30) not null,
+                   play_img varchar(100),
                    play_description text not null,
                    author_id int not null,
                    genre_id int not null,

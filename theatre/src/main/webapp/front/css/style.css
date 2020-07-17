@@ -141,7 +141,7 @@ html, body {
 
 .app .play-cards .play-card {
   width: 48%;
-  max-height: 150px;
+  height: 150px;
   margin: 10px 0;
 }
 
@@ -191,9 +191,9 @@ html, body {
 
 .footer .developer-email:hover {
   color: #7e7e7e;
-  -webkit-transform: scale(1.2);
-      -ms-transform: scale(1.2);
-          transform: scale(1.2);
+  -webkit-transform: scale(1.1);
+      -ms-transform: scale(1.1);
+          transform: scale(1.1);
 }
 
 .play-card {

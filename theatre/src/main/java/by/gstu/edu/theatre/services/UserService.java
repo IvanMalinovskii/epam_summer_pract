@@ -30,11 +30,15 @@ public class UserService implements by.gstu.edu.theatre.services.interfaces.User
     @Override
     public Optional<String> doSignUp(String jsonString) {
         User userToSignUp = parser.getUser(jsonString);
-        System.out.println(userToSignUp);
+        //System.out.println(userToSignUp);
         List<User> users = userDao.getAll().orElse(Collections.emptyList());
         if (isMailValid(userToSignUp.getEmail(), users)) {
-            userDao.insert(userToSignUp);
-            return Optional.of(jsonString);
+            Optional<Long> id = userDao.insert(userToSignUp);
+            if (!id.isPresent())
+                return Optional.empty();
+            userToSignUp.setId(id.get());
+
+            return Optional.of(parser.getJsonString(userToSignUp));
         }
         return Optional.empty();
     }

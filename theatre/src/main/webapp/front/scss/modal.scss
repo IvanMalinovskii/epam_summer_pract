@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
+
+@mixin font($size, $weight, $color, $name, $family) {
+    font-size: $size;
+    font-weight: $weight;
+    color: $color;
+    font-family: $name, $family;
+}
+
+.modal.open {
+    z-index: 15;
+    background-color: rgba(0, 0, 0, 0.637);
+    //transition: background-color .5s;
+    .modal__container {
+        top: 10%;
+    }
+}
+
+.modal {
+    transition: 1s;
+    position: absolute;
+    z-index: -1;
+    //z-index: 15;
+    width: 100%;
+    height: 100%;
+    //background-color: rgba(0, 0, 0, 0.637);
+    &__container {
+        transition: .5s;
+        position: relative;
+        top: -50%;
+        //top: 10%;
+        margin: 0 auto;
+        width: 50%;
+        //height: 20%;
+        min-height: 100px;
+        //background-color: rgb(202, 202, 202);
+        display: flex;
+        flex-direction: column;
+    }
+    &__header {
+        overflow: hidden;
+        height: 3vw;
+        background-color: rgb(107, 107, 107);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-radius: 3px 3px 0 0;
+        padding: 0 8px;
+        @include font(1.1vw, 500, white, 'Roboto Condensed', sans-serif);
+        text-transform: uppercase;
+    }
+    &__description {
+
+    }
+    &__cancel {
+        //font-size: 24px;
+        font-size: 1.5vw;
+        background-color: rgb(197, 75, 75);
+        width: 1.1em;
+        text-align: center;
+        border-radius: 60px;
+        cursor: pointer;
+        user-select: none;
+        &:active {
+            transform: scale(.9);
+        }
+    }
+    &__content {
+        padding: 15px 0;
+        //height: 100%;
+        flex: 1 1 auto;
+        background-color: rgb(216, 216, 216);
+        >* {
+            margin: 12px auto;
+            height: 2.6vw;
+            width: 80%;
+            outline: none;
+            border: 0;
+            @include font(1vw, 500, white, 'Montserrat', sans-serif);
+        }
+        // >input {
+        //     display: block;
+        //     width: 80%;
+        //     background-color: rgb(190, 220, 228);
+        //     padding: 0 10px;
+        //     border: 2px solid rgb(117, 117, 117);
+        // }
+        button {
+            display: block;
+            width: 80%;
+            margin-bottom: 20px;
+            background-color: rgb(107, 107, 107);
+            border-radius: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background-color .5s;
+            &:hover {
+                background-color: rgb(56, 56, 56);
+            }
+            &:active {
+                border: 2px solid rgb(233, 233, 233);
+            }
+        }
+    }
+    &__input.hidden {
+        display: none;
+    }
+    &__input {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        input {
+            flex: 2 1 auto;
+            //margin-left: 10%;
+            margin-left: 5px;
+            height: 100%;
+            padding: 0 10px;
+        }
+        label {
+            //font-size: 1.5vw;
+            @include font(1vw, 700, rgb(110, 107, 107), 'Montserrat', sans-serif);
+            text-transform: uppercase;
+            width: 25%;
+            overflow: hidden;
+        }
+    }
+}
+
+.text_incorrect {
+    &::placeholder {
+        color: rgb(228, 135, 135);
+    }
+    outline: 2px solid red;
+}
+
+.text_empty {
+    &::placeholder {
+        color: rgb(197, 195, 74);
+    }
+    outline: 2px solid rgb(248, 223, 0);
+}
