@@ -1,52 +1,32 @@
-
 `use strict`;
+
 let modalWindow = null;
-const plays = [
-    {
-        name: "some play",
-        genre: "some genre",
-        author: "some author",
-        description: "...",
-        img: "https://st.kp.yandex.net/im/poster/2/2/4/kinopoisk.ru-Gangster-Squad-2245832--o--.jpg",
-        dates: ['08.04', '04.12']
-    },
-    {
-        name: "some play",
-        genre: "some genre",
-        author: "some author",
-        description: "...",
-        img: "https://i.imged.com/indian-vintage-old-bollywood-movie-poster-sarfarosh-jeeterndra-sridevi.jpg",
-        dates: ['08.04', '04.12']
-    },
-    {
-        name: "some play",
-        genre: "some genre",
-        author: "some author",
-        description: "...",
-        dates: ['08.04', '04.12']
-    }
-];
 
 document.addEventListener('DOMContentLoaded', function() {
-    // let playsSection = document.querySelector('.play-cards');
-    // plays.forEach(element => {
-    //     playsSection.append(new PlayCard(element).cardElement);
-    // });
     modalWindow = new Modal();
     modalWindow.attach(document.body);
     createHeader('guest');
-    // fetch('../pages/repertoire.html')
-    // .then(response => response.text())
-    //request.getPage('../pages/repertoire.html')
-    request.getPage('http://localhost:8080/theatre/front/pages/repertoir.html')
+
+    request.getPage(appConfig.domain + 'front/pages/repertoire.html')
     .then(text => {
         document.querySelector('.app').innerHTML = text;
-        let playCards = document.querySelector('.play-cards');
-        plays.forEach(play => playCards.append(new PlayCard(play).cardElement));
-
-        return request.doGetJson('http://localhost:8080/theatre/plays');
+        return request.doGetJson(appConfig.domain + 'plays');
     })
-    .then(json => {json.forEach(play =>  document.querySelector('.play-cards').append(new PlayCard(play).cardElement))})
+    .then(json => {
+        let cardContainer = document.querySelector('.play-cards');
+        json.forEach(play =>  {
+            let playCard = new PlayCard(play);
+            playCard.cardElement.addEventListener('click', () => {
+                request.getPage(appConfig.domain + 'front/pages/play.html')
+                    .then(text => {
+                        document.querySelector('.app').innerHTML = text;
+                        return request.doGetJson(appConfig.domain + 'plays?id=' + playCard.cardElement.id);
+                    })
+                    .then(json => console.log(json));
+            })
+            cardContainer.append(playCard.cardElement);
+        });
+    })
     .catch(error => console.log('error ' + error));
 });
 

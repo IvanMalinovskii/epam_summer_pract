@@ -4,6 +4,7 @@ import by.gstu.edu.theatre.dao.daos.jdbc.daos.implementations.DateDao;
 import by.gstu.edu.theatre.dao.daos.jdbc.daos.implementations.PlayDao;
 import by.gstu.edu.theatre.services.PlayService;
 import by.gstu.edu.theatre.services.parsers.json.PlayDatesJsonParser;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
@@ -29,15 +30,18 @@ public class PlaysServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        String responseString = playService.getAllPlays();
-
-        JsonObject responseObject = new JsonObject();
-        responseObject.addProperty("status", "ok");
-        responseObject.add("plays", parser.parse(responseString).getAsJsonArray());
+        String responseString;
+        String parameter =req.getParameter("id");
+        if (parameter == null) {
+            responseString = playService.getAllPlays();
+        }
+        else {
+            responseString = playService.getPlay(Long.parseLong(parameter));
+        }
         PrintWriter writer = resp.getWriter();
         resp.setCharacterEncoding("UTF-8");
         resp.setContentType("application/json");
-        writer.write(responseObject.toString());
+        writer.write(responseString);
         writer.close();
     }
 }

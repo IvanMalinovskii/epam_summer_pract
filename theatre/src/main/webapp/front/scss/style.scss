@@ -226,3 +226,17 @@ html, body {height: 100%; overflow-x: hidden;}
         background-color: rgb(226, 226, 226);
     }
 }
+
+.play-description {
+    .play-card {
+        background-color: rgb(216, 216, 216);
+        border-radius: 1px;
+        border-bottom: 2px solid rgb(158, 158, 158);
+    }
+    &__article {
+        //background-color: white;
+        margin: 12px 0;
+        @include font(1.5vw, 400,rgb(59, 59, 59) ,'Roboto Condensed', sans-serif);
+        text-align: justify;
+    }
+}

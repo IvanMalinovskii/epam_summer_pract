@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<categories>
+    <category name="parterre" price="12.00">
+        <row seats="3"/>
+        <row seats="5"/>
+        <row seats="7"/>
+        <row seats="7"/>
+        <row seats="7"/>
+    </category>
+    <category name="balcony" price="20.00">
+        <row seats="9"/>
+        <row seats="9"/>
+        <row seats="9"/>
+    </category>
+</categories>

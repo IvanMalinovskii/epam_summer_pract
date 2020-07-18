@@ -3,4 +3,5 @@ const appConfig = {
         name: 'Malinovskii Ivan',
         email: "malinovskii.v@list.ru"
     },
+    domain: 'http://localhost:8080/theatre/'
 };

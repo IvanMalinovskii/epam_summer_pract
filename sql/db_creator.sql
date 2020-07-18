@@ -23,13 +23,18 @@ create table plays(play_id int primary key auto_increment,
                    genre_id int not null,
                    foreign key(author_id) references authors(author_id) on delete cascade,
                    foreign key(genre_id) references genres(genre_id) on delete cascade);
-                   
+                    
 create table dates(date_id int primary key auto_increment,
 				   date_day date not null,
                    play_id int not null,
                    foreign key(play_id) references plays(play_id));
                    
-                   
-                   
+create table orders(order_id int primary key auto_increment,
+					category enum('parterre', 'balcony') not null,
+                    quantity int not null,
+                    date_id int not null,
+                    user_id int not null,
+                    foreign key(date_id) references dates(date_id) on delete cascade,
+                    foreign key(user_id) references users(user_id) on delete cascade);
                    
                    

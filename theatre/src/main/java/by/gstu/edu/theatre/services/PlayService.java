@@ -30,4 +30,14 @@ public class PlayService {
                 .collect(Collectors.toList());
         return parser.getJsonString(playDates);
     }
+
+    public String getPlay(long id) {
+        final String[] result = {"{}"};
+        playDao.get(id).ifPresent(p -> {
+            List<Date> dates = dateDao.getAll().orElse(Collections.emptyList());
+            PlayDates playDates = new PlayDates(p, dates.stream().filter(date -> p.getId() == date.getPlayId()).collect(Collectors.toList()));
+            result[0] = parser.getJsonString(playDates);
+        });
+        return result[0];
+    }
 }

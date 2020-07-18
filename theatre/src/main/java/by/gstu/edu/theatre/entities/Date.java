@@ -45,13 +45,11 @@ public class Date {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Date date1 = (Date) o;
-        return id == date1.id &&
-                playId == date1.playId &&
-                Objects.equals(date, date1.date);
+        return Objects.equals(date, date1.date);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, date, playId);
+        return Objects.hash(date);
     }
 }

@@ -21,7 +21,7 @@ public class MainServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getServletContext().getRequestDispatcher("/front/").forward(req, resp);
-        //config.getServletContext().getRequestDispatcher("/front/pages/index.html").forward(req, resp);
+        //req.getServletContext().getRequestDispatcher("/front/").forward(req, resp);
+        resp.sendRedirect(config.getServletContext().getContextPath() + "/front/");
     }
 }

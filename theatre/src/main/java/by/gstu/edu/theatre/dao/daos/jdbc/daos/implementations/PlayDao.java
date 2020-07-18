@@ -86,7 +86,7 @@ public class PlayDao implements Dao<Play> {
             String authorName = resultSet.getString("author_name");
             long genreId = resultSet.getLong("genre_id");
             String genreName = resultSet.getString("genre_name");
-            return new Play(id, imgUrl, name, description, new Author(authorId, authorName), new Genre(genreId, genreName));
+            return new Play(id, name, imgUrl, description, new Author(authorId, authorName), new Genre(genreId, genreName));
         }
         catch (SQLException e) {
             throw new IllegalArgumentException();

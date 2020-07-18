@@ -317,3 +317,18 @@ html, body {
   height: 2px;
   background-color: #e2e2e2;
 }
+
+.play-description .play-card {
+  background-color: #d8d8d8;
+  border-radius: 1px;
+  border-bottom: 2px solid #9e9e9e;
+}
+
+.play-description__article {
+  margin: 12px 0;
+  font-size: 1.5vw;
+  font-weight: 400;
+  color: #3b3b3b;
+  font-family: "Roboto Condensed", sans-serif;
+  text-align: justify;
+}
